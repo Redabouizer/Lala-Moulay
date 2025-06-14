@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Star, Users, Lightbulb, Heart, Award, ChevronDown, Menu, X, Sparkles } from "lucide-react"
+import { Star, Users, Lightbulb, Heart, Award, ChevronDown, Menu, X, Sparkles, Play } from "lucide-react"
 import Image from "next/image"
 import { MoroccanLogo } from "@/components/moroccan-logo"
 import { ZelligePattern } from "@/components/zellige-pattern"
@@ -434,6 +434,88 @@ export default function Portfolio() {
             </p>
           </motion.div>
 
+          {/* Team Video Section */}
+          <motion.div
+            className="mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <Card className="bg-white/95 backdrop-blur-sm border-emerald-200 shadow-2xl overflow-hidden">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-3xl font-bold text-emerald-900 mb-4">Découvrez Notre Équipe en Action</h3>
+                  <p className="text-emerald-700 text-lg">Regardez notre équipe présenter le projet avec passion</p>
+                </div>
+                <div className="relative w-full h-96 md:h-[500px] rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-emerald-100 to-blue-100">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <motion.div
+                      className="text-center"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <motion.div
+                        className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 cursor-pointer shadow-lg"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
+                        onClick={() => window.open("https://drive.google.com/file/d/1yBxa4K73i2J7xN7cGvjSkC_J18BtS0eP/view?usp=drive_link", "_blank")}
+                      >
+                        <Play className="w-10 h-10 text-white ml-1" fill="currentColor" />
+                      </motion.div>
+                      <p className="text-emerald-800 font-semibold text-lg">Cliquez pour voir la vidéo de l'équipe</p>
+                      <p className="text-emerald-600 text-sm mt-2">Présentation de notre équipe Lala Moulay</p>
+                    </motion.div>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/20 to-transparent"></div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Team Photos */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-white/95 backdrop-blur-sm border-emerald-200 shadow-xl overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="relative h-80">
+                    <Image src="/images/filles.jpg" alt="Équipe Filles" fill className="object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/60 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 right-4 text-white">
+                      <h4 className="text-xl font-bold mb-2">Les Filles de l'Équipe</h4>
+                      <p className="text-sm opacity-90">Malak et Hajar en tenue traditionnelle marocaine</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-white/95 backdrop-blur-sm border-emerald-200 shadow-xl overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="relative h-80">
+                    <Image src="/images/Garsons.jpg" alt="Équipe Garçons" fill className="object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 right-4 text-white">
+                      <h4 className="text-xl font-bold mb-2">Les Garçons de l'Équipe</h4>
+                      <p className="text-sm opacity-90">Amine, Ibrahim et Ilyas devant l'architecture marocaine</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <motion.div
@@ -501,6 +583,45 @@ export default function Portfolio() {
               Un hommage au Maroc, unique pays producteur d'argan, ce trésor naturel symbole d'authenticité et de fierté
               nationale.
             </p>
+          </motion.div>
+
+          {/* Project Video Section */}
+          <motion.div
+            className="mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <Card className="bg-white/95 backdrop-blur-sm border-blue-200 shadow-2xl overflow-hidden">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-3xl font-bold text-blue-900 mb-4">Découvrez Notre Projet en Détail</h3>
+                  <p className="text-blue-700 text-lg">Plongez dans l'univers de Riad Bab Argana</p>
+                </div>
+                <div className="relative w-full h-96 md:h-[500px] rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-blue-100 to-emerald-100">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <motion.div
+                      className="text-center"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <motion.div
+                        className="w-20 h-20 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 cursor-pointer shadow-lg"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
+                        onClick={() => window.open("https://drive.google.com/file/d/13nGatGTJIHiBbsk81H6SuVmldy4ok7ry/view?usp=drive_link", "_blank")}
+                      >
+                        <Play className="w-10 h-10 text-white ml-1" fill="currentColor" />
+                      </motion.div>
+                      <p className="text-blue-800 font-semibold text-lg">Cliquez pour voir la vidéo du projet</p>
+                      <p className="text-blue-600 text-sm mt-2">Présentation complète de Riad Bab Argana</p>
+                    </motion.div>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
