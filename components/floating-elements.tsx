@@ -4,42 +4,43 @@ import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 
 export function FloatingElements() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [elements, setElements] = useState<{ x: number; y: number; size: number; rotate: number; delay: number }[]>([])
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
+    const generateElements = () => {
+      const newElements = Array.from({ length: 15 }, () => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 20 + 5,
+        rotate: Math.random() * 360,
+        delay: Math.random() * 5,
+      }))
+      setElements(newElements)
     }
 
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+    generateElements()
   }, [])
 
-  const elements = Array.from({ length: 8 }, (_, i) => i)
-
   return (
-    <div className="fixed inset-0 pointer-events-none z-0">
-      {elements.map((i) => (
+    <div className="absolute inset-0 pointer-events-none">
+      {elements.map((element, index) => (
         <motion.div
-          key={i}
-          className="absolute w-4 h-4 rounded-full"
+          key={index}
+          className="absolute rounded-full bg-blue-200/50"
           style={{
-            background: `linear-gradient(45deg, ${
-              i % 3 === 0 ? "#1e40af" : i % 3 === 1 ? "#059669" : "#d97706"
-            }, transparent)`,
-            left: `${10 + i * 12}%`,
-            top: `${20 + i * 8}%`,
+            left: `${element.x}%`,
+            top: `${element.y}%`,
+            width: `${element.size}px`,
+            height: `${element.size}px`,
+            rotate: `${element.rotate}deg`,
           }}
-          animate={{
-            x: mousePosition.x * 0.01 * (i + 1),
-            y: mousePosition.y * 0.01 * (i + 1),
-            rotate: 360,
-          }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{
-            type: "spring",
-            stiffness: 50,
-            damping: 20,
-            rotate: { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+            duration: 2,
+            delay: element.delay,
+            repeat: Number.POSITIVE_INFINITY,
+            repeatType: "reverse",
           }}
         />
       ))}
